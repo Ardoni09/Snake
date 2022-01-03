@@ -25,12 +25,32 @@ let dy = -1
 let timeDelayGame = 800
 let levelGame = 1
 basic.showNumber(levelGame)
+/**
+ * This forever functions was added by me.
+ * 
+ * This is not in the original project.
+ */
 basic.forever(function () {
     if (pins.digitalReadPin(DigitalPin.P12) == 1 && reset == 1) {
         reset = 0
         control.reset()
     }
 })
+/**
+ * This if statement was added by me.
+ * 
+ * This is not in the original project.
+ */
+/**
+ * This if statement was added by me, but the "set acc_x ... to the set is west ... " .
+ * 
+ * was in the original
+ */
+/**
+ * This "set reset to 1" was added by me.
+ * 
+ * This is not in the original project.
+ */
 basic.forever(function () {
     if (snakeX.length == 20) {
         basic.pause(2000)
