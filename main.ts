@@ -1,9 +1,15 @@
+/**
+ * This if statement was added by me.
+ * 
+ * This is not in the original project.
+ */
 let checkY = 0
 let checkX = 0
 let fStop = false
 let score = 0
 let py = 0
 let px = 0
+let reset = 0
 let preDy = 0
 let preDx = 0
 let acc_y = 0
@@ -13,7 +19,6 @@ let isSouth = false
 let isEast = false
 let isNorth = false
 let dx = 0
-let reset = 0
 let snakeY: number[] = []
 let snakeX: number[] = []
 snakeX.insertAt(0, 2)
@@ -26,31 +31,13 @@ let timeDelayGame = 800
 let levelGame = 1
 basic.showNumber(levelGame)
 /**
- * This forever functions was added by me.
- * 
- * This is not in the original project.
- */
-basic.forever(function () {
-    if (pins.digitalReadPin(DigitalPin.P12) == 1 && reset == 1) {
-        reset = 0
-        control.reset()
-    }
-})
-/**
- * This if statement was added by me.
- * 
- * This is not in the original project.
- */
-/**
  * This if statement was added by me, but the "set acc_x ... to the set is west ... " .
  * 
  * was in the original
  */
-/**
- * This "set reset to 1" was added by me.
- * 
- * This is not in the original project.
- */
+// This "set reset to 1" was added by me.
+// 
+// This is not in the original project.
 basic.forever(function () {
     if (snakeX.length == 20) {
         basic.pause(2000)
@@ -150,4 +137,17 @@ basic.forever(function () {
     // foodY = Math.random(5)
     led.plotBrightness(foodX, foodY, 21)
     basic.pause(timeDelayGame)
+})
+// This forever functions was added by me.
+// 
+// This is not in the original project.
+basic.forever(function () {
+    if (pins.digitalReadPin(DigitalPin.P12) == 1 && reset == 1) {
+        reset = 0
+        control.reset()
+    }
+    if (pins.digitalReadPin(DigitalPin.P9) == 1) {
+        reset = 0
+        control.reset()
+    }
 })
