@@ -14,11 +14,11 @@ let preDy = 0
 let preDx = 0
 let acc_y = 0
 let acc_x = 0
+let dx = 0
 let isWest = false
 let isSouth = false
-let isEast = false
 let isNorth = false
-let dx = 0
+let isEast = false
 let snakeY: number[] = []
 let snakeX: number[] = []
 snakeX.insertAt(0, 2)
@@ -30,6 +30,25 @@ let dy = -1
 let timeDelayGame = 800
 let levelGame = 1
 basic.showNumber(levelGame)
+basic.forever(function () {
+    if (isEast == false && (isNorth == false && (isSouth == false && isWest == false))) {
+        if (pins.digitalReadPin(DigitalPin.P16) == 1) {
+            isNorth = pins.digitalReadPin(DigitalPin.P0) == 1
+            isEast = pins.digitalReadPin(DigitalPin.P1) == 1
+            isSouth = pins.digitalReadPin(DigitalPin.P2) == 1
+            isWest = pins.digitalReadPin(DigitalPin.P8) == 1
+        }
+    }
+    if (true) {
+    	
+    } else if (false) {
+    	
+    } else if (false) {
+    	
+    } else if (false) {
+    	
+    }
+})
 /**
  * This if statement was added by me, but the "set acc_x ... to the set is west ... " .
  * 
@@ -55,12 +74,7 @@ basic.forever(function () {
         basic.showNumber(levelGame)
         basic.clearScreen()
     }
-    if (pins.digitalReadPin(DigitalPin.P16) == 1) {
-        isNorth = pins.digitalReadPin(DigitalPin.P0) == 1
-        isEast = pins.digitalReadPin(DigitalPin.P1) == 1
-        isSouth = pins.digitalReadPin(DigitalPin.P2) == 1
-        isWest = pins.digitalReadPin(DigitalPin.P8) == 1
-    } else if (pins.digitalReadPin(DigitalPin.P16) == 0) {
+    if (pins.digitalReadPin(DigitalPin.P16) == 0) {
         acc_x = input.acceleration(Dimension.X)
         acc_y = input.acceleration(Dimension.Y)
         isNorth = acc_y < -256
@@ -84,6 +98,10 @@ basic.forever(function () {
         dy = 0
     }
     reset = 1
+    isEast = false
+    isNorth = false
+    isSouth = false
+    isWest = false
     px = snakeX[snakeX.length - 1] + dx
     py = snakeY[snakeX.length - 1] + dy
     if (snakeX.length > 1) {
@@ -143,10 +161,6 @@ basic.forever(function () {
 // This is not in the original project.
 basic.forever(function () {
     if (pins.digitalReadPin(DigitalPin.P12) == 1 && reset == 1) {
-        reset = 0
-        control.reset()
-    }
-    if (pins.digitalReadPin(DigitalPin.P9) == 1) {
         reset = 0
         control.reset()
     }
